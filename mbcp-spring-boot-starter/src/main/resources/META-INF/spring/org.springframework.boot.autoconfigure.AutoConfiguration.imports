@@ -1,0 +1,2 @@
+com.hf.mbcp.autoconfigure.MbcpAutoConfiguration
+com.hf.mbcp.autoconfigure.MbcpShardingConfiguration

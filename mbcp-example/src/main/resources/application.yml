@@ -1,0 +1,72 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mbcp_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false   # 禁用 MyBatis 原生二级缓存，使用 MBCP
+
+# ─── MBCP 完整配置示例 ───
+mbcp:
+  enabled: true
+  # 缓存类型：LOCAL / REDIS / HYBRID / NONE
+  cache-type: LOCAL
+  default-expire: 300         # 默认 TTL 秒
+  consistency-level: EVENTUAL # 默认一致性级别
+
+  local:
+    max-memory-mb: 256        # L1 最大内存（MB）
+    max-value-size-kb: 512    # 单值最大 KB，超过不缓存到 L1
+    expire-after-write: 300   # 写后过期（秒）
+    expire-after-access: 0    # 访问后过期（0=不启用）
+    initial-capacity: 1000
+
+  # 若 cache-type=REDIS 或 HYBRID 时需配置
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    # password: secret
+    connect-timeout: 3000
+    timeout: 3000
+    lock-wait-time-ms: 3000    # Level D 写锁等待超时
+    double-evict-delay-ms: 200 # 延迟双删间隔
+    l1-ttl-ratio: 0.3          # L1 TTL = L2 TTL × 0.3（HYBRID 模式）
+
+  protection:
+    null-value-ttl-seconds: 60   # 防穿透：空值 TTL
+    lock-wait-time-ms: 3000      # 防击穿：锁等待
+    avalanche-offset-ratio: 0.2  # 防雪崩：随机 TTL 偏移比例
+
+  evict:
+    async-core-pool-size: 4     # 异步失效线程池
+    delayed-pool-size: 2        # 延迟双删线程池
+    delayed-queue-capacity: 500
+
+  sharding:
+    enabled: false              # 分库分表感知键生成（需 ShardingSphere）
+    append-shard-suffix: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,mbcp-cache
+  endpoint:
+    mbcp-cache:
+      enabled: true

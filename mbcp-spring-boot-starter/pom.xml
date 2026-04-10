@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.hf</groupId>
+        <artifactId>myBatis-cache-plus</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>mbcp-spring-boot-starter</artifactId>
+    <name>mbcp-spring-boot-starter</name>
+    <description>MBCP Spring Boot 自动配置 Starter</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hf</groupId>
+            <artifactId>mbcp-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hf</groupId>
+            <artifactId>mbcp-monitor</artifactId>
+        </dependency>
+        <!-- 可选：Redis 支持 -->
+        <dependency>
+            <groupId>com.hf</groupId>
+            <artifactId>mbcp-cache-redis</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- Redisson（可选，有 Redis 时启用）-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- 可选：ShardingSphere 集成 -->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>
