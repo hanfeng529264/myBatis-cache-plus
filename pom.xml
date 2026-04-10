@@ -11,12 +11,35 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.hf</groupId>
-    <artifactId>myBatis-cache-plus</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>io.github.hanfeng529264</groupId>
+    <artifactId>mybatis-cache-plus</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>myBatis-cache-plus</name>
+    <name>mybatis-cache-plus</name>
     <description>MyBatis Cache Plus - 高性能多级缓存框架</description>
+    <url>https://github.com/hanfeng529264/mybatis-cache-plus</url>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>hanfeng529264</name>
+            <url>https://github.com/hanfeng529264</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/hanfeng529264/mybatis-cache-plus.git</connection>
+        <developerConnection>scm:git:ssh://github.com/hanfeng529264/mybatis-cache-plus.git</developerConnection>
+        <url>https://github.com/hanfeng529264/mybatis-cache-plus</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <modules>
         <module>mbcp-annotation</module>
@@ -46,42 +69,42 @@
         <dependencies>
             <!-- 内部模块 BOM -->
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-annotation</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-cache-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-cache-local</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-cache-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-cache-multilevel</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-monitor</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.hf</groupId>
+                <groupId>io.github.hanfeng529264</groupId>
                 <artifactId>mbcp-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -111,6 +134,71 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <!-- 生成 Sources JAR（Maven Central 必须） -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 生成 Javadoc JAR（Maven Central 必须） -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <!-- 避免注释不规范导致构建失败 -->
+                    <doclint>none</doclint>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- GPG 签名（Maven Central 必须） -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Sonatype Central 发布插件 -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.5.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- 对应 ~/.m2/settings.xml 中的 <server id="central"> -->
+                    <publishingServerId>central</publishingServerId>
+                    <!-- false：上传后需要在网页手动点 Publish 确认，建议首次使用 false -->
+                    <autoPublish>false</autoPublish>
+                </configuration>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>

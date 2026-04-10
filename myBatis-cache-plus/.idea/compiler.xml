@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mbcp-annotation" />
+        <module name="mbcp-cache-local" />
+        <module name="mbcp-cache-redis" />
+        <module name="mbcp-monitor" />
+        <module name="mbcp-cache-api" />
+        <module name="mbcp-cache-multilevel" />
+        <module name="mbcp-spring-boot-starter" />
+        <module name="mbcp-core" />
+        <module name="mbcp-example" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mbcp-annotation" options="-parameters" />
+      <module name="mbcp-cache-api" options="-parameters" />
+      <module name="mbcp-cache-local" options="-parameters" />
+      <module name="mbcp-cache-multilevel" options="-parameters" />
+      <module name="mbcp-cache-redis" options="-parameters" />
+      <module name="mbcp-core" options="-parameters" />
+      <module name="mbcp-example" options="-parameters" />
+      <module name="mbcp-monitor" options="-parameters" />
+      <module name="mbcp-spring-boot-starter" options="-parameters" />
+      <module name="myBatis-cache-plus" options="" />
+    </option>
+  </component>
+</project>

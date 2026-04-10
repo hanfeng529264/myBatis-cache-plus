@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.hf</groupId>
-        <artifactId>myBatis-cache-plus</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>io.github.hanfeng529264</groupId>
+        <artifactId>mybatis-cache-plus</artifactId>
+        <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -17,11 +17,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hf</groupId>
+            <groupId>io.github.hanfeng529264</groupId>
             <artifactId>mbcp-cache-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.hf</groupId>
+            <groupId>io.github.hanfeng529264</groupId>
             <artifactId>mbcp-cache-local</artifactId>
         </dependency>
         <dependency>

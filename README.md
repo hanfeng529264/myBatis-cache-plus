@@ -166,9 +166,9 @@ myBatis-cache-plus/
 
 ```xml
 <dependency>
-    <groupId>com.hf</groupId>
+    <groupId>io.github.hanfeng529264</groupId>
     <artifactId>mbcp-spring-boot-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -211,13 +211,13 @@ mybatis:
 ### 4. 运行演示工程
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/hanfeng529264/mybatis-cache-plus.git
 cd myBatis-cache-plus
 # 编译所有模块
-/path/to/mvn clean install -DskipTests
+mvn clean install -DskipTests
 # 启动演示工程
 cd mbcp-example
-/path/to/mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 访问 `http://localhost:8080/h2-console`（H2 控制台）验证数据写入，访问 `http://localhost:8080/actuator/mbcp-cache` 查看缓存统计。
@@ -668,7 +668,7 @@ int deleteOrder(Long orderId);
 
 ```bash
 # 克隆仓库
-git clone <repo-url>
+git clone https://github.com/hanfeng529264/mybatis-cache-plus.git
 cd myBatis-cache-plus
 
 # 编译所有模块（多线程加速）
@@ -746,7 +746,7 @@ mvn clean package -pl mbcp-core -am
 ## License
 
 ```
-Copyright 2024 com.hf
+Copyright 2024 hanfeng529264
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
